@@ -5,6 +5,7 @@ import { Dashboard } from './pages/Dashboard'
 import { AuthCallback } from './pages/AuthCallback'
 import { ProtectedRoute } from './components/auth/ProtectedRoute'
 import { useAuth } from './hooks/useAuth'
+import { PaperView } from './pages/PaperView' 
 
 const queryClient = new QueryClient()
 
@@ -24,6 +25,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      
+      <Route
+        path="/paper/:id"
+        element={
+          <ProtectedRoute>
+            <PaperView />
           </ProtectedRoute>
         }
       />

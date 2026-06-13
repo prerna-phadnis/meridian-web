@@ -1,4 +1,4 @@
-// meridian-web/src/components/papers/PaperCard.tsx
+import { useNavigate } from 'react-router-dom'
 
 type Paper = {
   id: string
@@ -32,6 +32,7 @@ const statusConfig = {
 }
 
 export const PaperCard = ({ paper }: { paper: Paper }) => {
+  const navigate = useNavigate()
   const status = statusConfig[paper.status] || statusConfig.pending
 
   const formattedDate = new Date(paper.created_at).toLocaleDateString(
@@ -44,7 +45,8 @@ export const PaperCard = ({ paper }: { paper: Paper }) => {
   )
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-200 hover:shadow-sm transition-all duration-200 cursor-pointer">
+    <div onClick={() => navigate(`/paper/${paper.id}`)} 
+    className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-200 hover:shadow-sm transition-all duration-200 cursor-pointer">
       <div className="flex items-start justify-between gap-4">
         {/* Left: icon + title */}
         <div className="flex items-start gap-3 flex-1 min-w-0">
